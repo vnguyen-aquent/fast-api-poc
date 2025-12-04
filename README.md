@@ -1,8 +1,5 @@
 # FastAPI + SQLModel + UV + Docker POC
 
-This guide walks you through creating a simple Proof of Concept (POC) API using modern Python tools.
-
-
 ## Run the Application
 
 ### Build and Start Services
@@ -88,10 +85,25 @@ docker-compose exec api bash
 docker-compose exec db psql -U postgres -d appdb
 ```
 
+## Database Migration
+
+```bash
+uv sync # in case you haven't run it to install all dependencies included alembic in pyproject.toml
+uv run alembic history --verbose # check the history
+uv run alembic upgrade head # apply the alembic migration
+```
+
+Command to generate new script for any DB update
+
+```bash
+uv run alembic revision --autogenerate -m "create new products table"
+```
+
 ## Project Structure Summary
 
 ```
 fastapi-sqlmodel-poc/
+├── alembic/             # Where all the DB migration scripts located
 ├── app/
 │   ├── __init__.py
 │   ├── main.py          # FastAPI application and routes
@@ -118,9 +130,9 @@ fastapi-sqlmodel-poc/
 
 ## Next Steps
 
-- Add authentication (JWT tokens)
+- Add authentication
 - Implement more complex relationships between models
-- Add database migrations with Alembic
+- Integrate Alembic database migrations to pipeline to target environments 
 - Set up CI/CD pipeline
 - Add comprehensive test coverage
 - Implement logging and monitoring

@@ -5,7 +5,7 @@ import os
 # Get database URL from environment variable
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql://postgres:postgres@db:5432/appdb"
+    "postgresql://postgres:postgres@localhost:5432/appdb"
 )
 
 # Create engine
@@ -13,8 +13,7 @@ engine = create_engine(DATABASE_URL, echo=True)
 
 
 def create_db_and_tables():
-    """Create all tables in the database"""
-    SQLModel.metadata.create_all(engine)
+    pass
 
 
 def get_session() -> Generator[Session, None, None]:
