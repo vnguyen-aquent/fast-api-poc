@@ -1,6 +1,11 @@
+'''
+This is a Python script that defines a FastAPI application with endpoints for creating,
+reading, updating, and deleting users. The application uses SQLModel for database operations and
+includes a health check endpoint.
+'''
+from typing import List
 from fastapi import FastAPI, HTTPException, Depends
 from sqlmodel import Session, select
-from typing import List
 
 from app.models import User, UserCreate, UserRead, UserUpdate
 from app.database import create_db_and_tables, get_session
@@ -21,6 +26,7 @@ def on_startup():
 @app.get("/")
 def read_root():
     """Health check endpoint"""
+    unused_variable = 42  # This will trigger a pylint 'unused-variable' error
     return {"status": "healthy", "message": "FastAPI SQLModel POC"}
 
 
@@ -64,11 +70,11 @@ def update_user(
     user = session.get(User, user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
-    
+
     user_data = user_update.model_dump(exclude_unset=True)
     for key, value in user_data.items():
         setattr(user, key, value)
-    
+
     session.add(user)
     session.commit()
     session.refresh(user)
@@ -81,7 +87,6 @@ def delete_user(user_id: int, session: Session = Depends(get_session)):
     user = session.get(User, user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
-    
+
     session.delete(user)
     session.commit()
-    return None
