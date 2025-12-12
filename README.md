@@ -1,5 +1,13 @@
 # FastAPI + SQLModel + UV + Docker POC
 
+The purpose of the application is to demonstrate below items:
+
+1. FastAPI for Restful APIs (create/update/delete user)
+2. SQLModel/Alembic for database migration and data model (ORM)
+3. UV for package manager
+4. PostgreSQL
+5. Docker to containerize the app
+
 ## Run the Application
 
 ### Build and Start Services
