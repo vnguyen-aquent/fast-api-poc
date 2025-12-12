@@ -1,11 +1,57 @@
 repos:
+  # General hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-xml
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: debug-statements
+      - id: end-of-file-fixer
+  # Python linting
   - repo: https://github.com/PyCQA/pylint
     rev: v3.3.1
     hooks:
       - id: pylint
         language_version: python3.12
+        additional_dependencies: []
         args:
+          # disable missing imports, keep other warnings
           - --disable=E0401
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.3.0
+    hooks:
+      - id: flake8
+        additional_dependencies: []
+        args:
+          - --max-line-length=120
+  # TypeScript linting
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.49.0
+    hooks:
+    -   id: eslint
+        files: \.[jt]sx?$  # *.js, *.jsx, *.ts and *.tsx
+        types: [file]
+  # CSS linting
+  - repo: local
+    hooks:
+      - id: stylelint
+        name: stylelint
+        language: node
+        types: [css, scss]
         additional_dependencies:
-          - fastapi
-          - pydantic
+          - stylelint@16.6.1
+        entry: stylelint
+        args:
+          - "--fix"
+          - "--config=.stylelintrc.json"
+          - "."
+  - repo: https://github.com/thibaudcolas/pre-commit-stylelint
+    rev: v14.4.0   # or a later version tag
+    hooks:
+      - id: stylelint
+        args: ["--fix"]

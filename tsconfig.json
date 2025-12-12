@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",               // ESM module
+    "moduleResolution": "Node",       // Node-style resolution
+    "target": "ESNext",
+    "jsx": "react-jsx",               // React 17+ JSX transform
+    "esModuleInterop": true,          // allows default import from CommonJS
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["ui"]
+}

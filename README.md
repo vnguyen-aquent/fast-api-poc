@@ -128,11 +128,31 @@ fastapi-sqlmodel-poc/
 4. **Docker**: Consistent development and deployment environment
 5. **PostgreSQL**: Robust relational database
 
+## Pre-commit setup:
+Run the following command to install pre-commit. Once installed, every time you commit changes, the hooks (e.g., linting) will be triggered automatically:
+
+```bash
+brew install pre-commit
+
+# Verify installation
+pre-commit --version
+```
+Useful Commands:
+```bash
+# Run all hooks on all files (without committing)
+pre-commit run --all-files
+
+# Run all hooks on a specific file
+pre-commit run --all-files --files path/to/file
+
+# Skip pre-commit hooks for a single commit
+git commit -m "chore: doing something" --no-verify
+```
 ## Next Steps
 
 - Add authentication
 - Implement more complex relationships between models
-- Integrate Alembic database migrations to pipeline to target environments 
+- Integrate Alembic database migrations to pipeline to target environments
 - Set up CI/CD pipeline
 - Add comprehensive test coverage
 - Implement logging and monitoring

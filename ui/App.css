@@ -1,0 +1,6 @@
+.app-container {
+    background-color: #f0f0f0;
+    colr: red; /* This will trigger the csslint error */
+    padding: 20px;
+    margin: 10px;
+}
