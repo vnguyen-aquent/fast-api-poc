@@ -5,4 +5,4 @@ repos:
     - id: pylint
       language_version: python3.14
       args:
-        - --disable=E
+        - --disable=E0401
