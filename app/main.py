@@ -26,7 +26,7 @@ def on_startup():
 @app.get("/")
 def read_root():
     """Health check endpoint"""
-    unused_variable = 42  # This will trigger a pylint 'unused-variable' error
+    _variable = 42  # This will trigger a pylint 'unused-variable' error
     return {"status": "healthy", "message": "FastAPI SQLModel POC"}
 
 
