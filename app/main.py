@@ -1,7 +1,7 @@
 '''
 This is a Python script that defines a FastAPI application with endpoints for creating,
 reading, updating, and deleting users. The application uses SQLModel for database operations and
-includes a health check .
+includes a health check
 '''
 from typing import List
 from fastapi import FastAPI, HTTPException, Depends

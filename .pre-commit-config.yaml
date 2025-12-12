@@ -1,8 +1,11 @@
 repos:
--   repo: https://github.com/pycqa/pylint
+  - repo: https://github.com/PyCQA/pylint
     rev: v3.3.1
     hooks:
-    - id: pylint
-      language_version: python3.12
-      args:
-        - --disable=E0401
+      - id: pylint
+        language_version: python3.12
+        args:
+          - --disable=E0401
+        additional_dependencies:
+          - fastapi
+          - pydantic
